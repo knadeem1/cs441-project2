@@ -10,6 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/showGrid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Show Grid"
+                android:textSize="25dp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@color/black"/>
+
+        </LinearLayout>
         
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="1/8"
+                android:textStyle="italic|bold"
                 android:textAllCaps="false"
                 android:textSize="20dp"
                 android:background="@color/green"/>
@@ -32,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="1/6"
+                android:textStyle="italic|bold"
                 android:textAllCaps="false"
                 android:textSize="20dp"
                 android:background="@color/orange"/>
@@ -42,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="1/4"
+                android:textStyle="italic|bold"
                 android:textAllCaps="false"
                 android:textSize="20dp"
                 android:background="@color/blue"/>
@@ -52,9 +74,22 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="1/3"
+                android:textStyle="italic|bold"
                 android:textAllCaps="false"
                 android:textSize="20dp"
                 android:background="@color/pink"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/customViewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+        </LinearLayout>
     </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
