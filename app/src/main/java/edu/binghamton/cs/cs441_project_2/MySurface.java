@@ -19,8 +19,8 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
     private int numRows = 20;
     private int numColumns = 20;
 
-    private float pointerX = 0;
-    private float pointerY = 0;
+    private float pointerX;
+    private float pointerY;
 
 
 
@@ -31,8 +31,6 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
 
         paint = new Paint();
         paint.setColor(Color.RED);
-
-        rectf = new RectF(getPointerX(), getPointerY(), 200, 200);
     }
 
     @Override
@@ -40,7 +38,7 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
         drawGrid();
     }
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2){
+    public void surfaceChanged(SurfaceHolder surfaceHolder,int format, int width,int height) {
     }
 
     @Override
@@ -69,12 +67,12 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
         int height = getMeasuredHeight();
 
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(15);
+        paint.setStrokeWidth(10);
 
         canvas.drawLine(width/2, 0, width/2, height, paint);
         canvas.drawLine(0, height/2, width, height/2, paint);
 
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(3);
 
         //columns
         for (int i = 1; i <= getNumberofColumns(); i++) {
@@ -88,6 +86,7 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
 
 
         surfaceHolder.unlockCanvasAndPost(canvas);
+        surfaceHolder.setFormat(PixelFormat.TRANSLUCENT);
     }
 
 
@@ -107,26 +106,52 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
         this.pointerY = pointerY;
     }
 
-    public void drawPiece(int option){
+    public void drawPiece(int button, float angle){
         Canvas canvas = surfaceHolder.lockCanvas();
         //Paint surfaceBackground = new Paint();
         //surfaceBackground.setColor(Color.WHITE);
         //canvas.drawRect(0, 0, this.getWidth(), this.getHeight(), surfaceBackground);
 
+        rectf = new RectF(pointerX, pointerY, pointerX+200, pointerY+200);
+
         // Draw the pie slices
-        if(option == 1) {
-            canvas.drawArc(rectf, 0F, 20F, true, paint);
+        if(button == 1) {
+            canvas.drawArc(rectf, angle, angle, true, paint);
         }
-        if(option == 2) {
-            canvas.drawArc(rectf, 0F, 30F, true, paint);
+        if(button == 2) {
+            canvas.drawArc(rectf, angle, angle, true, paint);
         }
-        if(option == 3) {
-            canvas.drawArc(rectf, 0F, 90F, true, paint);
+        if(button == 3) {
+            canvas.drawArc(rectf, angle, angle, true, paint);
         }
-        if(option == 4) {
-            canvas.drawArc(rectf, 0F, 60F, true, paint);
+        if(button == 4) {
+            canvas.drawArc(rectf, angle, angle, true, paint);
+        }
+        if(button == 5){
+            canvas.drawArc(rectf, angle, angle, true, paint);
         }
 
+        surfaceHolder.unlockCanvasAndPost(canvas);
+    }
+
+    public void drawBall()
+    {
+        surfaceHolder = getHolder();
+
+        // Get and lock canvas object from surfaceHolder.
+        Canvas canvas = surfaceHolder.lockCanvas();
+
+        //Paint surfaceBackground = new Paint();
+        // Set the surfaceview background color.
+        //surfaceBackground.setColor(Color.BLACK);
+        // Draw the surfaceview background color.
+        //canvas.drawRect(0, 0, this.getWidth(), this.getHeight(), surfaceBackground);
+
+        // Draw the circle.
+        paint.setColor(Color.RED);
+        canvas.drawCircle(pointerX, pointerY, 100, paint);
+
+        // Unlock the canvas object and post the new draw.
         surfaceHolder.unlockCanvasAndPost(canvas);
     }
 
