@@ -22,10 +22,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private Button button3 = null;
     private Button button4 = null;
     private Button button5 = null;
+    private Button details = null;
     private LinearLayout canvasLayout = null;
     private LinearLayout chartLayout = null;
     private LinearLayout editLayout = null;
     private LinearLayout categoryLayout = null;
+    private LinearLayout textLayout = null;
     private EditText text1 = null;
     private EditText text2 = null;
     private EditText text3 = null;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private boolean drawPiece4 = false;
     private boolean drawPiece5 = false;
     private boolean drawGrid = false;
+    private boolean drawText = false;
     private TextView surveyText = null;
     private TextView questionText = null;
     private double rank1, rank2, rank3, rank4, rank5;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         showGrid.setVisibility(View.VISIBLE);
         chartLayout.setVisibility(View.GONE);
+        textLayout.setVisibility(View.GONE);
 
         //if(!text1.getText().toString().isEmpty() &&
         //        !text2.getText().toString().isEmpty() &&
@@ -82,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 surveyText.setText("Visualize With Pie Chart!");
                 surveyText.setTextColor(Color.LTGRAY);
                 questionText.setText("");
+                textLayout.setVisibility(View.VISIBLE);
             }
         });
 
@@ -90,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             @Override
             public void onClick(View view){
                 drawPiece1 = true;
-                rank1 = (Double.parseDouble(text1.getText().toString()) /15) *100;
+                rank1 = ((Double.parseDouble(text1.getText().toString()) /15) *100);
+                rank1 = Math.round(rank1);
                 questionText.setText("Comedy: " + rank1 + "%");
             }
         });
@@ -101,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             public void onClick(View view){
                 drawPiece2 = true;
                 rank2 = (Double.parseDouble(text2.getText().toString()) /15) *100;
+                rank2 = Math.round(rank2);
                 questionText.setText("Action: " + rank2 + "%");
             }
         });
@@ -111,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             public void onClick(View view){
                 drawPiece3 = true;
                 rank3 = (Double.parseDouble(text3.getText().toString()) /15) *100;
+                rank3 = Math.round(rank3);
                 questionText.setText("Horror: " + rank3 + "%");
             }
         });
@@ -121,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             public void onClick(View view) {
                 drawPiece4 = true;
                 rank4 = (Double.parseDouble(text4.getText().toString()) /15) *100;
+                rank4 = Math.round(rank4);
                 questionText.setText("Drama: " + rank4 + "%");
             }
         });
@@ -131,10 +140,20 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             public void onClick(View view) {
                 drawPiece5 = true;
                 rank5 = (Double.parseDouble(text5.getText().toString()) / 15) * 100;
+                rank5 = Math.round(rank5);
                 questionText.setText("SciFi: " + rank5 + "%");
             }
         });
+
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawText = true;
+            }
+        });
+
     }
+
     private void initControls(){
         if(canvasLayout == null){
             canvasLayout = findViewById(R.id.customViewLayout);
@@ -147,6 +166,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
         if(categoryLayout == null){
             categoryLayout = findViewById(R.id.categoryLayout);
+        }
+        if(textLayout == null){
+            textLayout = findViewById(R.id.textLayout);
         }
         if(showGrid == null){
             showGrid = findViewById(R.id.showGrid);
@@ -187,6 +209,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         if(questionText == null){
             questionText = findViewById(R.id.questionText);
         }
+        if(details == null){
+            details = findViewById(R.id.details);
+        }
     }
 
     @Override
@@ -195,10 +220,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         if(view instanceof SurfaceView) {
             view.invalidate();
 
-            float x = motionEvent.getX();
-            float y = motionEvent.getY();
-            customView.setPointerX(x);
-            customView.setPointerY(y);
+            //float x = motionEvent.getX();
+            //float y = motionEvent.getY();
+            //customView.setPointerX(x);
+            //customView.setPointerY(y);
 
             angle1 = (float)((rank1/100) * 360);
             angle2 = (float)((rank2/100) * 360);
@@ -208,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
             if (drawGrid) {
                 Paint paint = new Paint();
-                paint.setColor(Color.BLACK);
+                paint.setColor(Color.DKGRAY);
                 customView.setPaint(paint);
                 customView.drawGrid();
             }
@@ -216,34 +241,42 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 Paint paint = new Paint();
                 paint.setColor(Color.GREEN);
                 customView.setPaint(paint);
-                customView.drawPiece(1, angle1);
+                customView.drawPiece(angle1, angle2, angle3, angle4, angle5);
             }
-            if (drawPiece2) {
+
+            if(drawText){
+                Paint paint = new Paint();
+                paint.setColor(Color.BLACK);
+                customView.setPaint(paint);
+                customView.drawText(rank1, rank2, rank3, rank4, rank5);
+            }
+
+            /*if (drawPiece2){
                 Paint paint = new Paint();
                 paint.setColor(Color.YELLOW);
                 customView.setPaint(paint);
-                customView.drawPiece(2, angle2);
+                customView.drawPiece(2, angle1, angle2);
 
             }
-            if (drawPiece3) {
+            if (drawPiece3){
                 Paint paint = new Paint();
                 paint.setColor(Color.BLUE);
                 customView.setPaint(paint);
-                customView.drawPiece(3, angle3);
+                customView.drawPiece(3, angle2, angle3);
             }
             if (drawPiece4) {
                 Paint paint = new Paint();
-                paint.setColor(Color.RED);
+                paint.setColor(Color.MAGENTA);
                 customView.setPaint(paint);
-                customView.drawPiece(4, angle4);
+                customView.drawPiece(4, angle3, angle4);
             }
 
             if (drawPiece5) {
                 Paint paint = new Paint();
-                paint.setColor(Color.RED);
+                paint.setColor(Color.GRAY);
                 customView.setPaint(paint);
-                customView.drawPiece(5, angle5);
-            }
+                customView.drawPiece(5, angle4, 360F);
+            }*/
 
             return true;
         }
