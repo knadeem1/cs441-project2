@@ -102,23 +102,6 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
         surfaceHolder.setFormat(PixelFormat.TRANSLUCENT);
     }
 
-/*
-    public float getPointerX(){
-        return pointerX;
-    }
-
-    public float getPointerY(){
-        return pointerY;
-    }
-
-    public void setPointerX(float pointerX) {
-        this.pointerX = pointerX;
-    }
-
-    public void setPointerY(float pointerY) {
-        this.pointerY = pointerY;
-    }
-*/
     public void drawPiece(float angle1, float angle2, float angle3, float angle4, float angle5){
         Canvas canvas = surfaceHolder.lockCanvas();
         //Paint surfaceBackground = new Paint();
@@ -126,27 +109,31 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
         //canvas.drawRect(0, 0, this.getWidth(), this.getHeight(), surfaceBackground);
 
         this.angle1 = angle1;
-        this.angle2 = angle2;
-        this.angle3 = angle3;
-        this.angle4 = angle4;
+        this.angle2 = angle2+angle1;
+        this.angle3 = angle3+angle2+angle1;
+        this.angle4 = angle4+angle1+angle2+angle3;
         this.angle5 = angle5;
 
         int width = canvas.getWidth() /2;
         int height = canvas.getHeight() /2;
         rectf.set(width - 350, height - 350, width + 350, height + 350);
 
-        radius = width - 350;
+        radius = 350;
         // Draw the pie slices
-        paint.setColor(Color.GREEN);
+        paint.setColor(Color.parseColor("#009975"));
         canvas.drawArc(rectf, 0F, angle1, true, paint);
-        paint.setColor(Color.BLUE);
-        canvas.drawArc(rectf, angle1, angle2, true, paint);
-        paint.setColor(Color.GRAY);
-        canvas.drawArc(rectf, angle2+angle1, angle3, true, paint);
-        paint.setColor(Color.YELLOW);
-        canvas.drawArc(rectf, angle3+angle2+angle1, angle4, true, paint);
-        paint.setColor(Color.RED);
-        canvas.drawArc(rectf, angle1+angle2+angle3+angle4, angle5, true, paint);
+
+        paint.setColor(Color.parseColor("#CA3E47"));
+        canvas.drawArc(rectf, this.angle1, angle2, true, paint);
+
+        paint.setColor(Color.parseColor("#4BE3AC"));
+        canvas.drawArc(rectf, this.angle2, angle3, true, paint);
+
+        paint.setColor(Color.parseColor("#FF502F"));
+        canvas.drawArc(rectf, this.angle3, angle4, true, paint);
+
+        paint.setColor(Color.parseColor("#AB72C0"));
+        canvas.drawArc(rectf, this.angle4, angle5, true, paint);
 
 
         surfaceHolder.unlockCanvasAndPost(canvas);
@@ -157,37 +144,75 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
 
         int width = canvas.getWidth() /2;
         int height = canvas.getHeight() /2;
-        paint.setTextSize(70F);
-        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 
-        canvas.drawCircle(width,height,350,paint);
-
-        canvas.drawText("Comedy: " + rank1 + "%",width+200, height+650 ,paint);
-        canvas.drawText("Action: " + rank2 + "%",width-400, height+650 ,paint);
-        canvas.drawText("Horror: " + rank3 + "%",width-700, height+300 ,paint);
-        canvas.drawText("Drama: " + rank4 + "%",width-400, height-650 ,paint);
-        canvas.drawText("SciFi: " + rank5 + "%",width+250, height-650 ,paint);
-
+        paint.setColor(Color.DKGRAY);
+        paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(10);
 
+        canvas.drawLine(width, 0, width, height*2, paint);
+        canvas.drawLine(0, height, width*2, height, paint);
 
+        paint.setStyle(Style.STROKE);
+        paint.setStrokeWidth(5);
+
+        canvas.drawCircle(width, height, radius, paint);
+
+        paint.setTextSize(80F);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        paint.setStyle(Style.FILL);
+
+        paint.setColor(Color.parseColor("#009975"));
+        canvas.drawText("Comedy: " + rank1 + "%",width+190, height+650 ,paint);
+
+        paint.setColor(Color.parseColor("#CA3E47"));
+        canvas.drawText("Action: " + rank2 + "%",width-300, height+700 ,paint);
+
+        paint.setColor(Color.parseColor("#4BE3AC"));
+        canvas.drawText("Horror: " + rank3 + "%",width-700, height+500 ,paint);
+
+        paint.setColor(Color.parseColor("#FF502F"));
+        canvas.drawText("Drama: " + rank4 + "%",width-400, height-650 ,paint);
+
+        paint.setColor(Color.parseColor("#AB72C0"));
+        canvas.drawText("SciFi: " + rank5 + "%",width+250, height-650 ,paint);
+
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(8);
         canvas.drawLine(width+250,height+600, width+350, height, paint);
+        paint.setStrokeWidth(25);
+        canvas.drawPoint(width+350, height, paint);
+
         double angle = (double) angle1;
-        xcoor = (float) (radius * Math.cos(Math.toRadians(angle)));
-        ycoor = (float) (radius * Math.sin(Math.toRadians(angle)));
-        canvas.drawLine(width-350,height+600, xcoor, ycoor, paint);
+        xcoor = (float) (350 * (Math.cos(Math.toRadians(angle))));
+        ycoor = (float) (350 * (Math.sin(Math.toRadians(angle))));
+        paint.setStrokeWidth(8);
+        canvas.drawLine(width-250,height+650, width+xcoor, height+ycoor, paint);
+        paint.setStrokeWidth(25);
+        canvas.drawPoint(width+xcoor, height+ycoor, paint);
+
         angle = (double) angle2;
-        xcoor = (float) (350 * Math.cos(Math.toRadians(angle)));
-        ycoor = (float) (350 * Math.sin(Math.toRadians(angle)));
-        canvas.drawLine(width-650,height+250, xcoor, ycoor, paint);
+        xcoor = (float) (350 * (Math.cos(Math.toRadians(angle))));
+        ycoor = (float) (350 * (Math.sin(Math.toRadians(angle))));
+        paint.setStrokeWidth(8);
+        canvas.drawLine(width-650,height+450, width+xcoor, height+ycoor, paint);
+        paint.setStrokeWidth(25);
+        canvas.drawPoint(width+xcoor, height+ycoor, paint);
+
         angle = (double) angle3;
-        xcoor = (float) (350 * Math.cos(Math.toRadians(angle)));
-        ycoor = (float) (350 * Math.sin(Math.toRadians(angle)));
-        canvas.drawLine(width-350,height-600, xcoor, ycoor, paint);
+        xcoor = (float) (350 * (Math.cos(Math.toRadians(angle))));
+        ycoor = (float) (350 * (Math.sin(Math.toRadians(angle))));
+        paint.setStrokeWidth(8);
+        canvas.drawLine(width-350,height-600, width+xcoor, height+ycoor, paint);
+        paint.setStrokeWidth(25);
+        canvas.drawPoint(width+xcoor, height+ycoor, paint);
+
         angle = (double) angle4;
-        xcoor = (float) (350 * Math.cos(Math.toRadians(angle)));
-        ycoor = (float) (350 * Math.sin(Math.toRadians(angle)));
-        canvas.drawLine(width+300,height-600, xcoor, ycoor, paint);
+        xcoor = (float) (350 * (Math.cos(Math.toRadians(angle))));
+        ycoor = (float) (350 * (Math.sin(Math.toRadians(angle))));
+        paint.setStrokeWidth(8);
+        canvas.drawLine(width+300,height-600, width+xcoor, height+ycoor, paint);
+        paint.setStrokeWidth(25);
+        canvas.drawPoint(width+xcoor, height+ycoor, paint);
 
         surfaceHolder.unlockCanvasAndPost(canvas);
     }

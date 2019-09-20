@@ -22,11 +22,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
                 android:layout_weight="1"
-                android:background="@color/black"
+                android:background="@color/color1"
                 android:text="Survey"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:fontFamily="sans-serif-black"
+                android:textSize="25dp"
                 android:textStyle="bold"
                 android:textAlignment="center"/>
 
@@ -43,12 +44,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Rate the following movie categories:"
-                android:textSize="15dp"
+                android:text="Rate the following movie types from 1-5:"
+                android:textSize="18dp"
+                android:fontFamily="serif-monospace"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:background="@color/black"
+                android:background="@color/color1"
                 android:textAlignment="center"/>
 
         </LinearLayout>
@@ -65,7 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Comedy"
-                android:textSize="10dp"
+                android:fontFamily="serif-monospace"
+                android:textSize="15dp"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -78,7 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Action"
-                android:textSize="10dp"
+                android:fontFamily="serif-monospace"
+                android:textSize="15dp"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -91,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Horror"
-                android:textSize="10dp"
+                android:textSize="15dp"
+                android:fontFamily="serif-monospace"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -104,7 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Drama"
-                android:textSize="10dp"
+                android:textSize="15dp"
+                android:fontFamily="serif-monospace"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -117,8 +123,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="SciFi"
-                android:textSize="10dp"
+                android:textSize="15dp"
                 android:textAllCaps="true"
+                android:fontFamily="serif-monospace"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:background="@color/black"
@@ -197,14 +204,15 @@
             <Button
                 android:id="@+id/showGrid"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@color/color4"
+                android:fontFamily="sans-serif-black"
                 android:text="Ready to Draw!"
-                android:textSize="15dp"
                 android:textAllCaps="true"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:background="@color/black"/>
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -220,10 +228,11 @@
                 android:layout_height="29dp"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:text="Begin constructing your pie chart:"
+                android:text="Click on the color:"
                 android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:fontFamily="serif-monospace"
+                android:textColor="@color/color1"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -239,21 +248,21 @@
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/blue" />
+                android:background="@color/red" />
 
             <Button
                 android:id="@+id/Button3"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/gray" />
+                android:background="@color/blue" />
 
             <Button
                 android:id="@+id/Button4"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/yellow"
+                android:background="@color/orange"
                 android:textStyle="italic|bold" />
 
             <Button
@@ -261,7 +270,7 @@
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/red"
+                android:background="@color/purple"
                 android:textStyle="italic|bold" />
 
         </LinearLayout>
@@ -277,13 +286,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="29dp"
                 android:layout_weight="1"
-                android:text="Done!"
+                android:text="DONE!"
+                android:fontFamily="sans-serif-black"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:background="@color/black"
-                android:textStyle="italic|bold"
-                android:textSize="15dp" />
+                android:background="@color/color1"
+                android:textStyle="bold"
+                android:textSize="18dp" />
 
         </LinearLayout>
 

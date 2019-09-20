@@ -83,10 +83,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 chartLayout.setVisibility(View.VISIBLE);
                 editLayout.setVisibility(View.GONE);
                 categoryLayout.setVisibility(View.GONE);
-                surveyText.setText("Visualize With Pie Chart!");
+                surveyText.setText("Pie Chart");
                 surveyText.setTextColor(Color.LTGRAY);
                 questionText.setText("");
-                textLayout.setVisibility(View.VISIBLE);
+                button1.setVisibility(View.VISIBLE);
+                button2.setVisibility(View.GONE);
+                button3.setVisibility(View.GONE);
+                button4.setVisibility(View.GONE);
+                button5.setVisibility(View.GONE);
             }
         });
 
@@ -97,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 drawPiece1 = true;
                 rank1 = ((Double.parseDouble(text1.getText().toString()) /15) *100);
                 rank1 = Math.round(rank1);
+                showGrid.setVisibility(View.GONE);
+                button2.setVisibility(View.VISIBLE);
                 questionText.setText("Comedy: " + rank1 + "%");
             }
         });
@@ -108,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 drawPiece2 = true;
                 rank2 = (Double.parseDouble(text2.getText().toString()) /15) *100;
                 rank2 = Math.round(rank2);
+                button3.setVisibility(View.VISIBLE);
                 questionText.setText("Action: " + rank2 + "%");
             }
         });
@@ -119,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 drawPiece3 = true;
                 rank3 = (Double.parseDouble(text3.getText().toString()) /15) *100;
                 rank3 = Math.round(rank3);
+                button4.setVisibility(View.VISIBLE);
                 questionText.setText("Horror: " + rank3 + "%");
             }
         });
@@ -130,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 drawPiece4 = true;
                 rank4 = (Double.parseDouble(text4.getText().toString()) /15) *100;
                 rank4 = Math.round(rank4);
+                button5.setVisibility(View.VISIBLE);
                 questionText.setText("Drama: " + rank4 + "%");
             }
         });
@@ -141,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 drawPiece5 = true;
                 rank5 = (Double.parseDouble(text5.getText().toString()) / 15) * 100;
                 rank5 = Math.round(rank5);
+                textLayout.setVisibility(View.VISIBLE);
                 questionText.setText("SciFi: " + rank5 + "%");
             }
         });
