@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private LinearLayout editLayout = null;
     private LinearLayout categoryLayout = null;
     private LinearLayout textLayout = null;
+    private LinearLayout gridLayout = null;
     private EditText text1 = null;
     private EditText text2 = null;
     private EditText text3 = null;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 drawPiece1 = true;
                 rank1 = ((Double.parseDouble(text1.getText().toString()) /15) *100);
                 rank1 = Math.round(rank1);
-                showGrid.setVisibility(View.GONE);
+                gridLayout.setVisibility(View.GONE);
                 button2.setVisibility(View.VISIBLE);
                 questionText.setText("Comedy: " + rank1 + "%");
             }
@@ -170,6 +171,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
         if(chartLayout == null){
             chartLayout = findViewById(R.id.chartLayout);
+        }
+        if(gridLayout == null){
+            gridLayout = findViewById(R.id.gridLayout);
         }
         if(editLayout == null){
             editLayout = findViewById(R.id.editLayout);

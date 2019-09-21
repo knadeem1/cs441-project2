@@ -162,13 +162,13 @@ public class MySurface extends SurfaceView implements SurfaceHolder.Callback {
         paint.setStyle(Style.FILL);
 
         paint.setColor(Color.parseColor("#009975"));
-        canvas.drawText("Comedy: " + rank1 + "%",width+190, height+650 ,paint);
+        canvas.drawText("Comedy: " + rank1 + "%",width+170, height+650 ,paint);
 
         paint.setColor(Color.parseColor("#CA3E47"));
         canvas.drawText("Action: " + rank2 + "%",width-300, height+700 ,paint);
 
         paint.setColor(Color.parseColor("#4BE3AC"));
-        canvas.drawText("Horror: " + rank3 + "%",width-700, height+500 ,paint);
+        canvas.drawText("Horror: " + rank3 + "%",width-700, height+550 ,paint);
 
         paint.setColor(Color.parseColor("#FF502F"));
         canvas.drawText("Drama: " + rank4 + "%",width-400, height-650 ,paint);
