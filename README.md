@@ -1,4 +1,5 @@
-# cs441-project2
+# Project 2
+
 Project 2
 
 Description: This application is a pie chart constructor based on results from a survey question. It begins with prompting the user to answer a survey question. The user must rate the presented movie categories from 1-5 (with 5 being the most-favorable), then click the "Ready to Draw!" button for the grid layout. Next, the user will be able to click the color presented to view the corresponding movie category's weight on the chart, and place it on the grid. After, the all the categories are placed on the grid, the user will prompted to click the "Done!" button to view the final version with labels, and percentages included!
